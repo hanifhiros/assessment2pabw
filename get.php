@@ -1,6 +1,12 @@
 <?php
+// Koneksi ke database
+$koneksi = new mysqli("localhost", "root", "", "desa_tanggap");
 
-require_once('conn.php');
+// Periksa koneksi
+if ($koneksi->connect_error) {
+    die("Koneksi gagal: " . $koneksi->connect_error);
+}
+
 // Query untuk mengambil data dari tabel
 $query = "SELECT * FROM masyarakat_desa";
 $result = $koneksi->query($query);
@@ -20,5 +26,4 @@ $koneksi->close();
 
 // Mengembalikan data dalam bentuk JSON
 echo json_encode($data);
-
 ?>

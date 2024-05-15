@@ -58,7 +58,7 @@
     <h1>Data Pengguna</h1>
     <button id="loadData">Muat Data Pengguna</button> <!-- Tombol untuk memicu AJAX -->
     
-    <table id="userTable"> 
+    <table id="masyarakat_desa"> 
         <thead>
             <tr>
                 <th>User ID</th>
@@ -97,10 +97,10 @@
 
                      
                       $('.deleteUser').click(function() {
-                        var userID = $(this).data('id'); 
+                        var userID = $(this).data('id_masyakarat'); 
                         if (confirm("Apakah Anda yakin ingin menghapus pengguna ini?")) { 
                             $.ajax({
-                                url: 'delete_user.php', 
+                                url: 'delete.php', 
                                 type: 'GET', 
                                 data: { id: userID },
                                 success: function(response) {

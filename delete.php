@@ -6,11 +6,11 @@ if ($koneksi->connect_error) {
 }
 
 // Periksa apakah ID diterima
-if (isset($_POST['id_masyarakat'])) {
-    $id = $_POST['id_masyarakat'];
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
     
     // Query untuk menghapus data berdasarkan ID
-    $query = "DELETE FROM masyarakat_desa WHERE id_masyarakat = $id";
+    $query = "DELETE FROM masyarakat_desa WHERE id_masyakarat = $id";
     
     // Jalankan query
     if ($koneksi->query($query) === TRUE) {
@@ -24,3 +24,4 @@ if (isset($_POST['id_masyarakat'])) {
 
 // Tutup koneksi ke database
 $koneksi->close();
+?>
