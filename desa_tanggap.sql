@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Bulan Mei 2024 pada 03.29
+-- Waktu pembuatan: 27 Jun 2024 pada 09.30
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -58,15 +58,6 @@ CREATE TABLE `diskusi_laporan` (
   `tanggal_diskusi` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `diskusi_laporan`
---
-
-INSERT INTO `diskusi_laporan` (`id_diskusi`, `id_laporan`, `id_masyarakat`, `isi_diskusi`, `tanggal_diskusi`) VALUES
-(1, 1, 2, 'Saya juga mengalami masalah dengan sampah menumpuk di jalan. Semoga segera ditindaklanjuti.', '2024-05-09 10:30:00'),
-(2, 1, 3, 'Saya sudah melaporkan masalah ini ke dinas terkait beberapa hari yang lalu, tapi belum ada tanggapan.', '2024-05-09 11:15:00'),
-(3, 2, 1, 'Terima kasih informasinya. Saya akan segera periksa lampu jalan tersebut.', '2024-05-09 11:30:00');
-
 -- --------------------------------------------------------
 
 --
@@ -118,15 +109,6 @@ CREATE TABLE `laporan` (
   `lampiran` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `laporan`
---
-
-INSERT INTO `laporan` (`id_laporan`, `id_masyarakat`, `kategori_laporan`, `judul_laporan`, `deskripsi_laporan`, `tanggal_laporan`, `status_laporan`, `lampiran`) VALUES
-(1, 1, 'Sampah', 'Sampah menumpuk di jalan', 'Jalan depan rumah saya penuh dengan sampah yang sudah berhari-hari tidak diangkut.', '2024-05-09 10:00:00', 'Baru', 'foto_sampah1.jpg'),
-(2, 2, 'Penerangan Jalan', 'Lampu jalan mati', 'Lampu jalan di depan rumah saya sudah mati beberapa hari ini.', '2024-05-09 11:00:00', 'Baru', 'foto_lampu_mati1.jpg'),
-(3, 3, 'Fasilitas Umum', 'Taman rusak', 'Peralatan bermain di taman dekat rumah saya rusak.', '2024-05-09 12:00:00', 'Baru', 'foto_taman_rusak1.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -151,7 +133,14 @@ CREATE TABLE `masyarakat_desa` (
 INSERT INTO `masyarakat_desa` (`id_masyarakat`, `NIK`, `nama`, `username`, `password`, `alamat`, `no_telepon`, `email`) VALUES
 (1, '3200012345678901', 'Budi Setiawan', 'budisetiawan', 'rahasia123', 'Jl. Merdeka No. 1', '08123456789', 'budisetiawan@gmail.com'),
 (2, '3200023456789012', 'Ani Lestari', 'anilestari', 'rahasia456', 'Jl. Sudirman No. 2', '08523456789', 'anilestari@yahoo.com'),
-(3, '3200034567890123', 'Cipto Raharjo', 'ciptoraharjo', 'rahasia789', 'Jl. Diponegoro No. 3', '08723456789', 'ciptoraharjo@hotmail.com');
+(3, '3200034567890123', 'Cipto Raharjo', 'ciptoraharjo', 'rahasia789', 'Jl. Diponegoro No. 3', '08723456789', 'ciptoraharjo@hotmail.com'),
+(4, '3200045678901234', 'Dewi Sulastri', 'dewisulastri', 'rahasia012', 'Jl. Kartini No. 4', '08123412345', 'dewisulastri@gmail.com'),
+(5, '3200056789012345', 'Eko Prasetyo', 'ekoprasetyo', 'rahasia345', 'Jl. Gajah Mada No. 5', '08223456789', 'ekoprasetyo@yahoo.com'),
+(6, '3200067890123456', 'Fajar Nugroho', 'fajarnugroho', 'rahasia678', 'Jl. Kenari No. 6', '08323456789', 'fajarnugroho@hotmail.com'),
+(7, '3200078901234567', 'Gita Puspita', 'gitapuspita', 'rahasia901', 'Jl. Pahlawan No. 7', '08423456789', 'gitapuspita@gmail.com'),
+(8, '3200089012345678', 'Hadi Suprapto', 'hadisuprapto', 'rahasia234', 'Jl. Siliwangi No. 8', '08523456789', 'hadisuprapto@yahoo.com'),
+(9, '3200090123456789', 'Indah Permata', 'indahpermata', 'rahasia567', 'Jl. Trunojoyo No. 9', '08623456789', 'indahpermata@hotmail.com'),
+(10, '3200101234567890', 'Joko Widodo', 'jokowidodo', 'rahasia890', 'Jl. Patimura No. 10', '08723456789', 'jokowidodo@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -258,7 +247,7 @@ ALTER TABLE `laporan`
 -- AUTO_INCREMENT untuk tabel `masyarakat_desa`
 --
 ALTER TABLE `masyarakat_desa`
-  MODIFY `id_masyarakat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_masyarakat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengurusan_dokumen`
@@ -274,26 +263,26 @@ ALTER TABLE `pengurusan_dokumen`
 -- Ketidakleluasaan untuk tabel `diskusi_laporan`
 --
 ALTER TABLE `diskusi_laporan`
-  ADD CONSTRAINT `diskusi_laporan_ibfk_1` FOREIGN KEY (`id_laporan`) REFERENCES `laporan` (`id_laporan`),
-  ADD CONSTRAINT `diskusi_laporan_ibfk_2` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat_desa` (`id_masyarakat`);
+  ADD CONSTRAINT `diskusi_laporan_ibfk_1` FOREIGN KEY (`id_laporan`) REFERENCES `laporan` (`id_laporan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `diskusi_laporan_ibfk_2` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat_desa` (`id_masyarakat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `feedback`
 --
 ALTER TABLE `feedback`
-  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat_desa` (`id_masyarakat`);
+  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat_desa` (`id_masyarakat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
-  ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat_desa` (`id_masyarakat`);
+  ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat_desa` (`id_masyarakat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `pengurusan_dokumen`
 --
 ALTER TABLE `pengurusan_dokumen`
-  ADD CONSTRAINT `pengurusan_dokumen_ibfk_1` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat_desa` (`id_masyarakat`);
+  ADD CONSTRAINT `pengurusan_dokumen_ibfk_1` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat_desa` (`id_masyarakat`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

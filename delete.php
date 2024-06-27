@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     
     // Query untuk menghapus data berdasarkan ID
-    $query = "DELETE FROM masyarakat_desa WHERE id_masyakarat = $id";
+    $query = "DELETE FROM masyarakat_desa WHERE id_masyarakat = $id";
     
     // Jalankan query
     if ($koneksi->query($query) === TRUE) {

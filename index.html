@@ -19,7 +19,7 @@
 
         button {
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #3c00ff;
             color: white;
             border: none;
             cursor: pointer;
@@ -28,7 +28,7 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #3c00ff;
         }
 
         table {
@@ -81,23 +81,22 @@
                 type: 'GET',
                 dataType: 'json', // Respons diharapkan dalam format JSON
                 success: function(data) { 
-                    $('#userTable tbody').empty(); 
+                    $('#masyarakat_desa tbody').empty(); 
 
                     data.forEach(function(masyarakat_desa) { 
-                        $('#userTable tbody').append(
+                        $('#masyarakat_desa tbody').append(
                             '<tr>' +
-                            '<td>' + masyarakat_desa.masyarakat_id+ '</td>' +
-                            '<td>' + masyarakat_desa.nama + '</td>' +
+                            '<td>' + masyarakat_desa.id_masyarakat + '</td>' +
                             '<td>' + masyarakat_desa.username + '</td>' +
+                            '<td>' + masyarakat_desa.nama + '</td>' +
                             '<td>' + masyarakat_desa.email + '</td>' +
-                            '<td><button class="deleteUser" data-id="' + masyarakat_desa.masyarakat_id + '">Hapus</button></td>' + 
+                            '<td><button class="deleteUser" data-id="' + masyarakat_desa.id_masyarakat + '">Hapus</button></td>' + 
                             '</tr>'
                         );
                     });
 
-                     
-                      $('.deleteUser').click(function() {
-                        var userID = $(this).data('id_masyakarat'); 
+                    $('.deleteUser').click(function() {
+                        var userID = $(this).data('id'); 
                         if (confirm("Apakah Anda yakin ingin menghapus pengguna ini?")) { 
                             $.ajax({
                                 url: 'delete.php', 
